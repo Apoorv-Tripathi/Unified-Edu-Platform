@@ -18,7 +18,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'https://unified-edu-platform-o47m.vercel.app/login',
+  origin: 'https://unified-edu-platform-o47m.vercel.app',
   credentials: true
 }));
 app.use(express.json());
