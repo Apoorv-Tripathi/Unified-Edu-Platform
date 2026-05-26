@@ -16,7 +16,7 @@ const TrendAnalysis = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/analytics/trends/all?period=${period}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/analytics/trends/all?period=${period}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();

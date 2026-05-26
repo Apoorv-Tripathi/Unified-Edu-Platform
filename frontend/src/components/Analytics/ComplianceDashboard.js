@@ -16,7 +16,7 @@ const ComplianceDashboard = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/analytics/compliance/${selectedInstitution}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/analytics/compliance/${selectedInstitution}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();

@@ -14,7 +14,7 @@ const AdminLifecycleVerifications = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/students/lifecycle/pending-verifications`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/students/lifecycle/pending-verifications`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const result = await response.json();
@@ -34,7 +34,7 @@ const AdminLifecycleVerifications = () => {
     setProcessing(verificationId);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/students/lifecycle/verify/${verificationId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/students/lifecycle/verify/${verificationId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

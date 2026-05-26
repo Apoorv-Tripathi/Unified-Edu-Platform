@@ -58,7 +58,7 @@ const AadhaarVerification = ({ studentId, onVerificationComplete, onClose }) => 
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/students/aadhaar/send-otp`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/students/aadhaar/send-otp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ const AadhaarVerification = ({ studentId, onVerificationComplete, onClose }) => 
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/students/aadhaar/verify-otp`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/students/aadhaar/verify-otp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

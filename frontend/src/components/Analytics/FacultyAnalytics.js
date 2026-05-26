@@ -24,7 +24,7 @@ const FacultyAnalytics = () => {
         throw new Error('Not authenticated');
       }
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/teachers/${userId}/analytics`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/teachers/${userId}/analytics`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

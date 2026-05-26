@@ -106,7 +106,7 @@ const StudentLifecycleTracker = ({ studentId, studentData }) => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/students/${studentId}/lifecycle`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/students/${studentId}/lifecycle`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

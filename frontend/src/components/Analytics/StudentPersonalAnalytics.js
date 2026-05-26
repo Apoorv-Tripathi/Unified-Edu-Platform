@@ -25,7 +25,7 @@ const StudentPersonalAnalytics = () => {
 
       console.log("Fetching analytics for studentId:", studentId);
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/students/${studentId}/analytics`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/students/${studentId}/analytics`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${stored.token}`,

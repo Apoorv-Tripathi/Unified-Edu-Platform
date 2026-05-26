@@ -26,7 +26,7 @@ const StudentDashboard = () => {
       const token = localStorage.getItem('token');
       const userEmail = localStorage.getItem('userEmail');
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/students/my-profile`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/students/my-profile`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

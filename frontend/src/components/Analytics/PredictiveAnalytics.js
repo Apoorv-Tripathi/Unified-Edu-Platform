@@ -15,7 +15,7 @@ const PredictiveAnalytics = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/analytics/predictive/dropout-risk/all`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/analytics/predictive/dropout-risk/all`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();

@@ -10,7 +10,7 @@ const getAuthHeaders = () => {
 
 // ============ AUTH API ============
 export const registerUser = async (userData) => {
-  const response = await fetch(`${API_URL}/auth/register`, {
+  const response = await fetch(`${API_URL}/api/auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userData),
@@ -19,7 +19,7 @@ export const registerUser = async (userData) => {
 };
 
 export const loginUser = async (credentials) => {
-  const response = await fetch(`${API_URL}/auth/login`, {
+  const response = await fetch(`${API_URL}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials),
@@ -31,7 +31,7 @@ export const validateToken = async () => {
   const token = localStorage.getItem('token');
   if (!token) return false;
   try {
-    const response = await fetch(`${API_URL}/me`, {
+    const response = await fetch(`${API_URL}/api/auth/me`, {
       method: 'GET',
       headers: getAuthHeaders(),
     });
@@ -95,7 +95,7 @@ export const getDashboardPath = (role) => {
 // ============ STUDENTS API ============
 export const fetchStudents = async (params = {}) => {
   const queryString = new URLSearchParams(params).toString();
-  const response = await fetch(`${API_URL}/students?${queryString}`, {
+  const response = await fetch(`${API_URL}/api/students?${queryString}`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -103,7 +103,7 @@ export const fetchStudents = async (params = {}) => {
 };
 
 export const fetchStudentStats = async () => {
-  const response = await fetch(`${API_URL}/students/stats`, {
+  const response = await fetch(`${API_URL}/api/students/stats`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -111,7 +111,7 @@ export const fetchStudentStats = async () => {
 };
 
 export const createStudent = async (studentData) => {
-  const response = await fetch(`${API_URL}/students`, {
+  const response = await fetch(`${API_URL}/api/students`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(studentData),
@@ -120,7 +120,7 @@ export const createStudent = async (studentData) => {
 };
 
 export const updateStudent = async (id, studentData) => {
-  const response = await fetch(`${API_URL}/students/${id}`, {
+  const response = await fetch(`${API_URL}/api/students/${id}`, {
     method: 'PUT',
     headers: getAuthHeaders(),
     body: JSON.stringify(studentData),
@@ -129,7 +129,7 @@ export const updateStudent = async (id, studentData) => {
 };
 
 export const deleteStudent = async (id) => {
-  const response = await fetch(`${API_URL}/students/${id}`, {
+  const response = await fetch(`${API_URL}/api/students/${id}`, {
     method: 'DELETE',
     headers: getAuthHeaders(),
   });
@@ -137,7 +137,7 @@ export const deleteStudent = async (id) => {
 };
 
 export const bulkAddStudents = async (data) => {
-  const response = await fetch(`${API_URL}/students/bulk-add`, {
+  const response = await fetch(`${API_URL}/api/students/bulk-add`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(data),
@@ -146,7 +146,7 @@ export const bulkAddStudents = async (data) => {
 };
 
 export const bulkDeleteStudents = async (ids) => {
-  const response = await fetch(`${API_URL}/students/bulk-delete`, {
+  const response = await fetch(`${API_URL}/api/students/bulk-delete`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify({ ids }),
@@ -156,7 +156,7 @@ export const bulkDeleteStudents = async (ids) => {
 
 // ============ AADHAAR API ============
 export const sendAadhaarOtp = async (studentId, aadhaarNumber) => {
-  const response = await fetch(`${API_URL}/students/aadhaar/send-otp`, {
+  const response = await fetch(`${API_URL}/api/students/aadhaar/send-otp`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify({ studentId, aadhaarNumber }),
@@ -167,7 +167,7 @@ export const sendAadhaarOtp = async (studentId, aadhaarNumber) => {
 // Send Aadhaar OTP for Login (2FA)
 export const sendAadhaarOTP = async (data) => {
   try {
-    const response = await fetch(`${API_URL}/auth/send-otp`, {
+    const response = await fetch(`${API_URL}/api/auth/send-otp`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -191,7 +191,7 @@ export const sendAadhaarOTP = async (data) => {
 // Verify Aadhaar OTP for Login (2FA)
 export const verifyAadhaarOTP = async (data) => {
   try {
-    const response = await fetch(`${API_URL}/auth/verify-otp`, {
+    const response = await fetch(`${API_URL}/api/auth/verify-otp`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -214,7 +214,7 @@ export const verifyAadhaarOTP = async (data) => {
 
 // Existing Student Aadhaar OTP Verification (keep your old one)
 export const verifyAadhaarOtp = async (studentId, aadhaarNumber, otp) => {
-  const response = await fetch(`${API_URL}/students/aadhaar/verify-otp`, {
+  const response = await fetch(`${API_URL}/api/students/aadhaar/verify-otp`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify({ studentId, aadhaarNumber, otp }),
@@ -225,7 +225,7 @@ export const verifyAadhaarOtp = async (studentId, aadhaarNumber, otp) => {
 
 // ============ LIFECYCLE API ============
 export const fetchLifecycle = async (studentId) => {
-  const response = await fetch(`${API_URL}/students/${studentId}/lifecycle`, {
+  const response = await fetch(`${API_URL}/api/students/${studentId}/lifecycle`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -233,7 +233,7 @@ export const fetchLifecycle = async (studentId) => {
 };
 
 export const addLifecycleStage = async (studentId, stageData) => {
-  const response = await fetch(`${API_URL}/students/${studentId}/lifecycle`, {
+  const response = await fetch(`${API_URL}/api/students/${studentId}/lifecycle`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(stageData),
@@ -242,7 +242,7 @@ export const addLifecycleStage = async (studentId, stageData) => {
 };
 
 export const updateLifecycleStage = async (studentId, stageId, updateData) => {
-  const response = await fetch(`${API_URL}/students/${studentId}/lifecycle/${stageId}`, {
+  const response = await fetch(`${API_URL}/api/students/${studentId}/lifecycle/${stageId}`, {
     method: 'PUT',
     headers: getAuthHeaders(),
     body: JSON.stringify(updateData),
@@ -251,7 +251,7 @@ export const updateLifecycleStage = async (studentId, stageId, updateData) => {
 };
 
 export const getStudentsByStage = async (stage) => {
-  const response = await fetch(`${API_URL}/students/lifecycle/stage/${stage}`, {
+  const response = await fetch(`${API_URL}/api/students/lifecycle/stage/${stage}`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -259,7 +259,7 @@ export const getStudentsByStage = async (stage) => {
 };
 
 export const getDropoutRisk = async () => {
-  const response = await fetch(`${API_URL}/students/analytics/dropout-risk`, {
+  const response = await fetch(`${API_URL}/api/students/analytics/dropout-risk`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -269,7 +269,7 @@ export const getDropoutRisk = async () => {
 // ============ INSTITUTIONS API ============
 export const fetchInstitutions = async (params = {}) => {
   const queryString = new URLSearchParams(params).toString();
-  const response = await fetch(`${API_URL}/institutions?${queryString}`, {
+  const response = await fetch(`${API_URL}/api/institutions?${queryString}`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -277,7 +277,7 @@ export const fetchInstitutions = async (params = {}) => {
 };
 
 export const fetchInstitutionStats = async () => {
-  const response = await fetch(`${API_URL}/institutions/stats`, {
+  const response = await fetch(`${API_URL}/api/institutions/stats`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -285,7 +285,7 @@ export const fetchInstitutionStats = async () => {
 };
 
 export const createInstitution = async (data) => {
-  const response = await fetch(`${API_URL}/institutions`, {
+  const response = await fetch(`${API_URL}/api/institutions`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(data),
@@ -294,7 +294,7 @@ export const createInstitution = async (data) => {
 };
 
 export const updateInstitution = async (id, data) => {
-  const response = await fetch(`${API_URL}/institutions/${id}`, {
+  const response = await fetch(`${API_URL}/api/institutions/${id}`, {
     method: 'PUT',
     headers: getAuthHeaders(),
     body: JSON.stringify(data),
@@ -303,7 +303,7 @@ export const updateInstitution = async (id, data) => {
 };
 
 export const deleteInstitution = async (id) => {
-  const response = await fetch(`${API_URL}/institutions/${id}`, {
+  const response = await fetch(`${API_URL}/api/institutions/${id}`, {
     method: 'DELETE',
     headers: getAuthHeaders(),
   });
@@ -311,7 +311,7 @@ export const deleteInstitution = async (id) => {
 };
 
 export const bulkAddInstitutions = async (data) => {
-  const response = await fetch(`${API_URL}/institutions/bulk-add`, {
+  const response = await fetch(`${API_URL}/api/institutions/bulk-add`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(data),
@@ -320,7 +320,7 @@ export const bulkAddInstitutions = async (data) => {
 };
 
 export const bulkDeleteInstitutions = async (ids) => {
-  const response = await fetch(`${API_URL}/institutions/bulk-delete`, {
+  const response = await fetch(`${API_URL}/api/institutions/bulk-delete`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify({ ids }),
@@ -331,7 +331,7 @@ export const bulkDeleteInstitutions = async (ids) => {
 // ============ TEACHERS API ============
 export const fetchTeachers = async (params = {}) => {
   const queryString = new URLSearchParams(params).toString();
-  const response = await fetch(`${API_URL}/teachers?${queryString}`, {
+  const response = await fetch(`${API_URL}/api/teachers?${queryString}`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -339,7 +339,7 @@ export const fetchTeachers = async (params = {}) => {
 };
 
 export const fetchTeacherStats = async () => {
-  const response = await fetch(`${API_URL}/teachers/stats`, {
+  const response = await fetch(`${API_URL}/api/teachers/stats`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -347,7 +347,7 @@ export const fetchTeacherStats = async () => {
 };
 
 export const createTeacher = async (data) => {
-  const response = await fetch(`${API_URL}/teachers`, {
+  const response = await fetch(`${API_URL}/api/teachers`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(data),
@@ -356,7 +356,7 @@ export const createTeacher = async (data) => {
 };
 
 export const updateTeacher = async (id, data) => {
-  const response = await fetch(`${API_URL}/teachers/${id}`, {
+  const response = await fetch(`${API_URL}/api/teachers/${id}`, {
     method: 'PUT',
     headers: getAuthHeaders(),
     body: JSON.stringify(data),
@@ -365,7 +365,7 @@ export const updateTeacher = async (id, data) => {
 };
 
 export const deleteTeacher = async (id) => {
-  const response = await fetch(`${API_URL}/teachers/${id}`, {
+  const response = await fetch(`${API_URL}/api/teachers/${id}`, {
     method: 'DELETE',
     headers: getAuthHeaders(),
   });
@@ -373,7 +373,7 @@ export const deleteTeacher = async (id) => {
 };
 
 export const bulkAddTeachers = async (data) => {
-  const response = await fetch(`${API_URL}/teachers/bulk-add`, {
+  const response = await fetch(`${API_URL}/api/teachers/bulk-add`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(data),
@@ -382,7 +382,7 @@ export const bulkAddTeachers = async (data) => {
 };
 
 export const bulkDeleteTeachers = async (ids) => {
-  const response = await fetch(`${API_URL}/teachers/bulk-delete`, {
+  const response = await fetch(`${API_URL}/api/teachers/bulk-delete`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify({ ids }),
@@ -393,7 +393,7 @@ export const bulkDeleteTeachers = async (ids) => {
 // ============ USERS API ============
 export const fetchUsers = async (params = {}) => {
   const queryString = new URLSearchParams(params).toString();
-  const response = await fetch(`${API_URL}/users?${queryString}`, {
+  const response = await fetch(`${API_URL}/api/users?${queryString}`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -401,7 +401,7 @@ export const fetchUsers = async (params = {}) => {
 };
 
 export const fetchUserStats = async () => {
-  const response = await fetch(`${API_URL}/users/stats`, {
+  const response = await fetch(`${API_URL}/api/users/stats`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -409,7 +409,7 @@ export const fetchUserStats = async () => {
 };
 
 export const updateUser = async (id, data) => {
-  const response = await fetch(`${API_URL}/users/${id}`, {
+  const response = await fetch(`${API_URL}/api/users/${id}`, {
     method: 'PUT',
     headers: getAuthHeaders(),
     body: JSON.stringify(data),
@@ -418,7 +418,7 @@ export const updateUser = async (id, data) => {
 };
 
 export const toggleUserStatus = async (id) => {
-  const response = await fetch(`${API_URL}/users/${id}/toggle-status`, {
+  const response = await fetch(`${API_URL}/api/users/${id}/toggle-status`, {
     method: 'PUT',
     headers: getAuthHeaders(),
   });
@@ -426,7 +426,7 @@ export const toggleUserStatus = async (id) => {
 };
 // ============ ANALYTICS API ============
 export const fetchDropoutRisk = async (institutionId) => {
-  const response = await fetch(`${API_URL}/analytics/predictive/dropout-risk/${institutionId}`, {
+  const response = await fetch(`${API_URL}/api/analytics/predictive/dropout-risk/${institutionId}`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -434,7 +434,7 @@ export const fetchDropoutRisk = async (institutionId) => {
 };
 
 export const fetchStudentRisk = async (studentId) => {
-  const response = await fetch(`${API_URL}/analytics/predictive/student/${studentId}`, {
+  const response = await fetch(`${API_URL}/api/analytics/predictive/student/${studentId}`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -442,7 +442,7 @@ export const fetchStudentRisk = async (studentId) => {
 };
 
 export const fetchPerformanceForecast = async (institutionId) => {
-  const response = await fetch(`${API_URL}/analytics/predictive/forecast/${institutionId}`, {
+  const response = await fetch(`${API_URL}/api/analytics/predictive/forecast/${institutionId}`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -450,7 +450,7 @@ export const fetchPerformanceForecast = async (institutionId) => {
 };
 
 export const fetchComplianceMetrics = async (institutionId) => {
-  const response = await fetch(`${API_URL}/analytics/compliance/${institutionId}`, {
+  const response = await fetch(`${API_URL}/api/analytics/compliance/${institutionId}`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -458,7 +458,7 @@ export const fetchComplianceMetrics = async (institutionId) => {
 };
 
 export const fetchComparativeAnalysis = async () => {
-  const response = await fetch(`${API_URL}/analytics/comparative`, {
+  const response = await fetch(`${API_URL}/api/analytics/comparative`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -466,14 +466,14 @@ export const fetchComparativeAnalysis = async () => {
 };
 
 export const fetchTrendAnalysis = async (institutionId, period = '1year') => {
-  const response = await fetch(`${API_URL}/analytics/trends/${institutionId}?period=${period}`, {
+  const response = await fetch(`${API_URL}/api/analytics/trends/${institutionId}?period=${period}`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
   return await response.json();
 };
 export const deleteUser = async (id) => {
-  const response = await fetch(`${API_URL}/users/${id}`, {
+  const response = await fetch(`${API_URL}/api/users/${id}`, {
     method: 'DELETE',
     headers: getAuthHeaders(),
   });
@@ -482,7 +482,7 @@ export const deleteUser = async (id) => {
 // ============ ANALYTICS API ============
 
 export const fetchStudentAnalytics = async (studentId) => {
-  const response = await fetch(`${API_URL}/students/${studentId}/analytics`, {
+  const response = await fetch(`${API_URL}/api/students/${studentId}/analytics`, {
     method: 'GET',
     headers: getAuthHeaders()
   });
@@ -490,7 +490,7 @@ export const fetchStudentAnalytics = async (studentId) => {
 };
 
 export const fetchFacultyAnalytics = async (teacherId) => {
-  const response = await fetch(`${API_URL}/teachers/${teacherId}/analytics`, {
+  const response = await fetch(`${API_URL}/api/teachers/${teacherId}/analytics`, {
     method: 'GET',
     headers: getAuthHeaders()
   });
@@ -498,7 +498,7 @@ export const fetchFacultyAnalytics = async (teacherId) => {
 };
 
 export const fetchInstitutionAnalytics = async (institutionId) => {
-  const response = await fetch(`${API_URL}/institutions/${institutionId}/analytics`, {
+  const response = await fetch(`${API_URL}/api/institutions/${institutionId}/analytics`, {
     method: 'GET',
     headers: getAuthHeaders()
   });
@@ -506,7 +506,7 @@ export const fetchInstitutionAnalytics = async (institutionId) => {
 };
 
 export const registerFaculty = async (data) => {
-  const response = await fetch(`${API_URL}/auth/register/faculty`, {
+  const response = await fetch(`${API_URL}/api/auth/register/faculty`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -517,7 +517,7 @@ export const registerFaculty = async (data) => {
 // ============ AI CHATBOT (GROQ) ============
 
 export const askEduGuideAI = async (message) => {
-  const response = await fetch(`${API_URL}/chat/ask`, {
+  const response = await fetch(`${API_URL}/api/chat/ask`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -533,7 +533,7 @@ export const askEduGuideAI = async (message) => {
 // Get all schemes
 export const getSchemes = async (filters = {}) => {
   const queryParams = new URLSearchParams(filters).toString();
-  const response = await fetch(`${API_URL}/schemes${queryParams ? `?${queryParams}` : ''}`, {
+  const response = await fetch(`${API_URL}/api/schemes${queryParams ? `?${queryParams}` : ''}`, {
     headers: getAuthHeaders(),
   });
   return await response.json();
@@ -541,7 +541,7 @@ export const getSchemes = async (filters = {}) => {
 
 // Get scheme analytics (Admin)
 export const getSchemeAnalytics = async () => {
-  const response = await fetch(`${API_URL}/schemes/analytics`, {
+  const response = await fetch(`${API_URL}/api/schemes/analytics`, {
     headers: getAuthHeaders(),
   });
   return await response.json();
@@ -549,7 +549,7 @@ export const getSchemeAnalytics = async () => {
 
 // Get institution scheme stats
 export const getInstitutionSchemeStats = async (institutionId) => {
-  const response = await fetch(`${API_URL}/schemes/institution/${institutionId}/stats`, {
+  const response = await fetch(`${API_URL}/api/schemes/institution/${institutionId}/stats`, {
     headers: getAuthHeaders(),
   });
   return await response.json();
@@ -557,7 +557,7 @@ export const getInstitutionSchemeStats = async (institutionId) => {
 
 // Create scheme (Admin)
 export const createScheme = async (schemeData) => {
-  const response = await fetch(`${API_URL}/schemes`, {
+  const response = await fetch(`${API_URL}/api/schemes`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(schemeData),
@@ -567,7 +567,7 @@ export const createScheme = async (schemeData) => {
 
 // Update scheme (Admin)
 export const updateScheme = async (schemeId, schemeData) => {
-  const response = await fetch(`${API_URL}/schemes/${schemeId}`, {
+  const response = await fetch(`${API_URL}/api/schemes/${schemeId}`, {
     method: 'PUT',
     headers: getAuthHeaders(),
     body: JSON.stringify(schemeData),
@@ -577,7 +577,7 @@ export const updateScheme = async (schemeId, schemeData) => {
 
 // Enroll student in scheme
 export const enrollStudentInScheme = async (data) => {
-  const response = await fetch(`${API_URL}/schemes/enroll`, {
+  const response = await fetch(`${API_URL}/api/schemes/enroll`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(data),
@@ -587,7 +587,7 @@ export const enrollStudentInScheme = async (data) => {
 
 // Update enrollment status
 export const updateEnrollmentStatus = async (data) => {
-  const response = await fetch(`${API_URL}/schemes/enrollment/status`, {
+  const response = await fetch(`${API_URL}/api/schemes/enrollment/status`, {
     method: 'PUT',
     headers: getAuthHeaders(),
     body: JSON.stringify(data),
@@ -599,7 +599,7 @@ export const updateEnrollmentStatus = async (data) => {
 // ============ LIFECYCLE VERIFICATION API ============
 
 export const requestLifecycleChange = async (studentId, changeData) => {
-  const response = await fetch(`${API_URL}/students/${studentId}/lifecycle/request`, {
+  const response = await fetch(`${API_URL}/api/students/${studentId}/lifecycle/request`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify(changeData),
@@ -608,7 +608,7 @@ export const requestLifecycleChange = async (studentId, changeData) => {
 };
 
 export const getPendingVerifications = async () => {
-  const response = await fetch(`${API_URL}/students/lifecycle/pending-verifications`, {
+  const response = await fetch(`${API_URL}/api/students/lifecycle/pending-verifications`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -616,7 +616,7 @@ export const getPendingVerifications = async () => {
 };
 
 export const verifyLifecycleChange = async (verificationId, status, adminComment) => {
-  const response = await fetch(`${API_URL}/students/lifecycle/verify/${verificationId}`, {
+  const response = await fetch(`${API_URL}/api/students/lifecycle/verify/${verificationId}`, {
     method: 'PATCH',
     headers: getAuthHeaders(),
     body: JSON.stringify({ status, adminComment }),
@@ -625,7 +625,7 @@ export const verifyLifecycleChange = async (verificationId, status, adminComment
 };
 
 export const getVerificationStatus = async (studentId) => {
-  const response = await fetch(`${API_URL}/students/${studentId}/lifecycle/verification-status`, {
+  const response = await fetch(`${API_URL}/api/students/${studentId}/lifecycle/verification-status`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });

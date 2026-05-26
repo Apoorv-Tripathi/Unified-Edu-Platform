@@ -173,7 +173,7 @@ const AnalyticsOverview = () => {
   const loadOverview = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/analytics/overview?t=${Date.now()}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/analytics/overview?t=${Date.now()}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

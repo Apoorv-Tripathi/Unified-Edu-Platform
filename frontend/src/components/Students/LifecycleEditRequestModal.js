@@ -20,7 +20,7 @@ const LifecycleEditRequestModal = ({ show, onClose, editData, studentId, onSubmi
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/students/${studentId}/lifecycle/request`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/students/${studentId}/lifecycle/request`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

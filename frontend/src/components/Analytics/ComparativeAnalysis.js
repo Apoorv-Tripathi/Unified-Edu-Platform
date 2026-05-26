@@ -16,7 +16,7 @@ const ComparativeAnalysis = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/analytics/comparative`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/analytics/comparative`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
