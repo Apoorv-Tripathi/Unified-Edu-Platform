@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5001/api';
+const API_URL = 'https://unified-edu-platform-1.onrender.com';
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem('token');
