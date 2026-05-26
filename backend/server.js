@@ -18,7 +18,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://unified-edu-platform-o47m.vercel.app/login',
   credentials: true
 }));
 app.use(express.json());
