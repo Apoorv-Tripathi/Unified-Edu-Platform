@@ -175,8 +175,8 @@ const StudentLifecycleTracker = ({ studentId, studentData }) => {
     try {
       const token = localStorage.getItem('token');
       const url = showEditModal
-        ? `${process.env.REACT_APP_API_URL}/students/${studentId}/lifecycle/${selectedStage._id}`
-        : `${process.env.REACT_APP_API_URL}/students/${studentId}/lifecycle`;
+        ? `${process.env.REACT_APP_API_URL}/api/students/${studentId}/lifecycle/${selectedStage._id}`
+        : `${process.env.REACT_APP_API_URL}/api/students/${studentId}/lifecycle`;
 
       const response = await fetch(url, {
         method: showEditModal ? 'PUT' : 'POST',
